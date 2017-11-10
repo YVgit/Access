@@ -1,0 +1,8 @@
+"SELECT [ipaddress] FROM [Network temp] WHERE [hostname] = accatriuli01"
+ Set rs = DBEngine(0)(0).OpenRecordset(strSql, dbOpenDynaset)
+ 
+  Set rs = DBEngine(0)(0).OpenRecordset("SELECT [ipaddress] FROM [Network adresses concatenated per network device] WHERE [hostname] = accatriuli01", dbOpenDynaset)
+  
+  SELECT [Network adresses concatenated per network device].hostname, First([Network adresses concatenated per network device].device) & IIf(Count([Network adresses concatenated per network device].device)>1,"; " & Last([Network adresses concatenated per network device].device)) AS Device, First([Network adresses concatenated per network device].[ipaddress]) & IIf(Count([Network adresses concatenated per network device].[ipaddress])>1,"; " & Last([Network adresses concatenated per network device].[ipaddress])) AS [First&Last IpAddress], First([Network adresses concatenated per network device].[gateway]) & IIf(Count([Network adresses concatenated per network device].[gateway])>1,"; " & Last([Network adresses concatenated per network device].[gateway])) AS [First&Last Gateway], ConcatRelated("[DeviceIpAddress]","[Network adresses concatenated per network device]","[hostname] = '" & [hostname] & "'","",", ") AS IpAddresses, ConcatRelated("[DeviceGateway]","[Network adresses concatenated per network device]","[hostname] = '" & [hostname] & "'","",", ") AS Gateways
+FROM [Network adresses concatenated per network device]
+GROUP BY [Network adresses concatenated per network device].hostname, ConcatRelated("[DeviceIpAddress]","[Network adresses concatenated per network device]","[hostname] = '" & [hostname] & "'","",", "), ConcatRelated("[DeviceGateway]","[Network adresses concatenated per network device]","[hostname] = '" & [hostname] & "'","",", ");

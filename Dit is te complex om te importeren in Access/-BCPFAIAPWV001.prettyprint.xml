@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<machineinformation>
+  <hardwareinformation>
+    <hostname>BCPFAIAPWV001</hostname>
+    <manufacturer>VMware, Inc.</manufacturer>
+    <model>VMware Virtual Platform</model>
+    <serialnumber>VMware-42 39 ef 26 e6 9e a6 5a-6b 85 c6 e0 d3 91 d9 7e</serialnumber>
+    <owner>INFRABEL</owner>
+    <domain>msnet.railb.be</domain>
+    <CPU name="Intel(R) Xeon(R) CPU           X7550  @ 2.00GHz" caption="Intel64 Family 6 Model 46 Stepping 6" ID="CPU0"/>
+    <RAM unit="GB">4,00</RAM>
+    <storage>
+      <volume volumeID="C:" capacity="30,00 GB" percentagefreespace="46,13" freespace="13,84 GB"/>
+      <volume volumeID="D:" capacity="30,00 GB" percentagefreespace="17,87%" freespace="5,36 GB"/>
+    </storage>
+  </hardwareinformation>
+  <OSinfo>
+    <name>Microsoft Windows Server 2012 R2 Standard</name>
+    <description>A040 - ACC - ADLib</description>
+    <version>6.3.9600</version>
+    <architecture>64-bit</architecture>
+    <organization>INFRABEL</organization>
+    <domain>msnet.railb.be</domain>
+  </OSinfo>
+  <installedsoftware>
+    <application displayname="" displayversion="" publisher="" installlocation=""/>
+  </installedsoftware>
+  <SMBshares>
+    <share name="Adlib" scopename="*" path="D:\data" description=""/>
+    <share name="ADLIBDATA" scopename="*" path="D:\data\Adlib" description=""/>
+    <share name="AdlibPIC" scopename="*" path="D:\data\AdlibPIC" description=""/>
+    <share name="ADMIN$" scopename="*" path="C:\Windows" description="Remote Admin"/>
+    <share name="C$" scopename="*" path="C:\" description="Default share"/>
+    <share name="D$" scopename="*" path="D:\" description="Default share"/>
+    <share name="data" scopename="*" path="d:\data" description=""/>
+    <share name="Data2" scopename="*" path="D:\Data2" description=""/>
+    <share name="IPC$" scopename="*" path="" description="Remote IPC"/>
+  </SMBshares>
+  <webserver type="IIS7+">
+    <service name="Adlib" ID="2" state="Started" physicalpath="D:\Data2\web\wwwroot\Adlib" bindings="http *:80:">
+      <application name="wwwopac" applicationpool="wwwopacx" protocols="http" physicalPath="D:\Data2\web\wwwapps\wwwopacx"/>
+      <application name="AIS5" applicationpool="AdlibInternetServer5" protocols="http" physicalPath="D:\Data2\web\wwwapps\InternetserverAIS5\AIS5"/>
+    </service>
+    <service name="Adlib-extern" ID="3" state="Started" physicalpath="D:\Data2\web\wwwapps\wwwopacx-extern" bindings="http *:88:">
+      <application name="data-api" applicationpool="Adlib-api-extern" protocols="http" physicalPath="D:\Data2\web\wwwapps\wwwopacx-extern"/>
+      <application name="image-api" applicationpool="Adlib-api-extern" protocols="http" physicalPath="D:\Data2\web\wwwapps\wwwopacx-image"/>
+    </service>
+  </webserver>
+</machineinformation>
